@@ -15,7 +15,31 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    @IBAction func touchUpShowAlertButton(_ sender: UIButton){
+        showAlertController(style: .alert)
+    }
+    @IBAction func touchUpShowActionSheetButton(_ sender: UIButton){
+        showAlertController(style: .actionSheet)
+    }
+    
+    func showAlertController(style: UIAlertController.Style) {
+        let alertController: UIAlertController
+        alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: style)
+        
+        let okAction: UIAlertAction
+        okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action:UIAlertAction) in
+            print("OK pressed")
+        })
+        let cancelAction: UIAlertAction
+        cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: {
+            print("Alert controller shown")
+        })
+    }
 
 }
 
