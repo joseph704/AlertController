@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         let alertController: UIAlertController
         alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: style)
         
-        let okAction: UIAlertAction
+        var okAction: UIAlertAction
         okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action:UIAlertAction) in
             print("OK pressed")
         })
@@ -35,6 +35,20 @@ class ViewController: UIViewController {
         
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)
+        
+        let handler: (UIAlertAction) -> Void
+        handler =  { (action:UIAlertAction) in
+            print("action pressed \(action.title ?? "")")
+        }
+        
+        let someAction: UIAlertAction
+        someAction = UIAlertAction(title: "Some", style: UIAlertAction.Style.default, handler: handler)
+        
+        let anotherAction: UIAlertAction
+        anotherAction = UIAlertAction(title: "Another", style: UIAlertAction.Style.default, handler: handler)
+        
+        alertController.addAction(someAction)
+        alertController.addAction(anotherAction)
         
         self.present(alertController, animated: true, completion: {
             print("Alert controller shown")
