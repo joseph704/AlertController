@@ -42,13 +42,21 @@ class ViewController: UIViewController {
         }
         
         let someAction: UIAlertAction
-        someAction = UIAlertAction(title: "Some", style: UIAlertAction.Style.default, handler: handler)
+        someAction = UIAlertAction(title: "Some", style: UIAlertAction.Style.destructive, handler: handler)
         
         let anotherAction: UIAlertAction
         anotherAction = UIAlertAction(title: "Another", style: UIAlertAction.Style.default, handler: handler)
         
         alertController.addAction(someAction)
         alertController.addAction(anotherAction)
+        
+        if style == .alert {
+            alertController.addTextField { (field: UITextField) in
+                field.placeholder = "플레이스 홀더"
+                field.textColor = UIColor.red
+            }
+        }
+        
         
         self.present(alertController, animated: true, completion: {
             print("Alert controller shown")
